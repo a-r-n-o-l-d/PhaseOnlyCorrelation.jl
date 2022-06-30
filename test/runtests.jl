@@ -1,6 +1,6 @@
 using PhaseOnlyCorrelation
 using Test
 
-@testset "PhaseOnlyCorrelation.jl" begin
+@testset "PhaseOnlyCorrelation" begin
     # Write your tests here.
 end

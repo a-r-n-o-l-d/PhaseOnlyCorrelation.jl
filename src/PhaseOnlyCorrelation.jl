@@ -1,5 +1,8 @@
 module PhaseOnlyCorrelation
 
+using FFTW
+using ColorTypes
+
 export poc, displacement, local_displacement
 
 """
