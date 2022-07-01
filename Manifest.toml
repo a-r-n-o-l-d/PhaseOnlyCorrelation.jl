@@ -5,9 +5,9 @@ manifest_format = "2.0"
 
 [[deps.AbstractFFTs]]
 deps = ["ChainRulesCore", "LinearAlgebra"]
-git-tree-sha1 = "6f1d9bc1c08f9f4a8fa92e3ea3cb50153a1b40d4"
+git-tree-sha1 = "8e9c3482c61d06343a6199814bf84f7df82f2b28"
 uuid = "621f4979-c628-5d54-868e-fcf4e3e8185c"
-version = "1.1.0"
+version = "1.2.0"
 
 [[deps.Adapt]]
 deps = ["LinearAlgebra"]
@@ -17,11 +17,11 @@ version = "3.3.3"
 
 [[deps.ApodizationFunctions]]
 deps = ["DSP"]
-git-tree-sha1 = "049dbcaa89e20f2b648ada86b8fe23975c1d0cbf"
-repo-rev = "v0.1.2"
+git-tree-sha1 = "bd265da6debb8993099f8d4c9934b14ed36bdef7"
+repo-rev = "main"
 repo-url = "https://github.com/a-r-n-o-l-d/ApodizationFunctions.jl"
 uuid = "1989e0ef-b035-4793-b6cd-86d79d787dd6"
-version = "0.1.1"
+version = "0.1.2"
 
 [[deps.ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
@@ -141,10 +141,10 @@ uuid = "9a962f9c-6df0-11e9-0e5d-c546b8b5ee8a"
 version = "1.10.0"
 
 [[deps.DataStructures]]
-deps = ["Compat", "InteractiveUtils", "OrderedCollections"]
-git-tree-sha1 = "d1fff3a548102f48987a52a2e0d114fa97d730f0"
+deps = ["InteractiveUtils", "OrderedCollections"]
+git-tree-sha1 = "88d48e133e6d3dd68183309877eac74393daa7eb"
 uuid = "864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"
-version = "0.18.13"
+version = "0.17.20"
 
 [[deps.Dates]]
 deps = ["Printf"]
@@ -792,10 +792,10 @@ uuid = "5e47fb64-e119-507b-a336-dd2b206d9990"
 version = "1.7.0"
 
 [[deps.TiffImages]]
-deps = ["ColorTypes", "DataStructures", "DocStringExtensions", "FileIO", "FixedPointNumbers", "IndirectArrays", "Inflate", "Mmap", "OffsetArrays", "PkgVersion", "ProgressMeter", "UUIDs"]
-git-tree-sha1 = "fcf41697256f2b759de9380a7e8196d6516f0310"
+deps = ["ColorTypes", "DocStringExtensions", "FileIO", "FixedPointNumbers", "IndirectArrays", "Inflate", "OffsetArrays", "OrderedCollections", "PkgVersion", "ProgressMeter"]
+git-tree-sha1 = "945b8d87c5e8d5e34e6207ee15edb9d11ae44716"
 uuid = "731e570b-9d59-4bfa-96dc-6df516fadf69"
-version = "0.6.0"
+version = "0.4.3"
 
 [[deps.TiledIteration]]
 deps = ["OffsetArrays"]
