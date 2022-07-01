@@ -13,7 +13,6 @@ include("subpixel_algorithms.jl")
 """
     poc(sig1, sig2)
 
-
 """
 function poc(sig1, sig2)
     c = fft(sig1) .* conj.(fft(sig2))
