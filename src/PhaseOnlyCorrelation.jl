@@ -1,9 +1,13 @@
 module PhaseOnlyCorrelation
 
+# ajout la possibilité de divers algo pour subpixel
+
 using FFTW
 using ColorTypes
 
 export poc, displacement, local_displacement
+
+include("subpixel_algorithms.jl")
 
 """
     poc(sig1, sig2)
@@ -19,15 +23,26 @@ poc(sig1::Array{T}, sig2::Array{T}) where {T<:AbstractGray} = poc(channelview(si
 
 function displacement(sig1, sig2)
     r = poc(sig1, sig2)
+    subpixel(None(), r)
+end
+
+function displacement(algo::AbstractSubPixelAlgorithm, sig1, sig2)
+    r = poc(sig1, sig2)
+    subpixel(algo, r)
+end
+
+#=function displacement(sig1, sig2)
+    r = poc(sig1, sig2)
     maxr, I = findmax(r)
     Δ = ntuple(i -> _delta(r, I, maxr, i), ndims(sig1))
     J = Tuple(I - one(I))
     hs = size(sig1) ./ 2
     @. J - hs + Δ, maxr
-end
+end=#
 
 displacement(sig1, sig2, apod) = displacement(apod(sig1), apod(sig2))
 
+#=
 function local_displacement(sig1, sig2, I, winsize, apod)
     Δ = CartesianIndex(winsize .÷ 2)
     s1 = apod(sig1[I - Δ:I + Δ - one(I)])
@@ -59,3 +74,4 @@ function _delta(r, I, maxr, dims)
 end
 
 end
+=#
