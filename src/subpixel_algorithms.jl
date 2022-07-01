@@ -2,20 +2,17 @@ abstract type AbstractSubPixelAlgorithm end
 
 struct None <: AbstractSubPixelAlgorithm end
 
-function subpixel(::None, r)
-    maxr, I = findmax(r)
-    I, maxr
-end
+subpixel(::None, r, Imax, maxr) = ntuple(zero(r), ndims(r))
 
 struct Foroosh <: AbstractSubPixelAlgorithm end
 
-function subpixel(::Foroosh, r)
-    I, maxr = subpixel(::None, r)
-    Δ = ntuple(i -> _delta_foroosh(r, I, maxr, i), ndims(r))
-    J = Tuple(I - one(I))
-    hs = size(sig1) ./ 2
-    @. J - hs + Δ, maxr
-end
+subpixel(::Foroosh, r, Imax, maxr) = ntuple(i -> _delta_foroosh(r, Imax, maxr, i), ndims(r))
+    #I, maxr = subpixel(::None, r)
+    
+    #J = Tuple(I - one(I))
+    #hs = size(sig1) ./ 2
+    #@. J - hs + Δ, maxr
+#end
 
 function _delta_foroosh(r1, r2, maxr)
     if r1 > r2

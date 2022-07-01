@@ -3,9 +3,10 @@ module PhaseOnlyCorrelation
 # ajout la possibilité de divers algo pour subpixel
 
 using FFTW
-using ColorTypes
+using ApodizationFunctions: AbstractApodizationFunction
+using Images
 
-export poc, displacement, local_displacement
+export poc, displacement, Foroosh #, local_displacement
 
 include("subpixel_algorithms.jl")
 
@@ -23,13 +24,27 @@ poc(sig1::Array{T}, sig2::Array{T}) where {T<:AbstractGray} = poc(channelview(si
 
 function displacement(sig1, sig2)
     r = poc(sig1, sig2)
-    subpixel(None(), r)
+    maxr, Imax = findmax(r)
+    shift = Tuple(Imax - oneunit(Imax))
+    hs = size(sig1) ./ 2
+    @. shift - hs, maxr
 end
 
 function displacement(algo::AbstractSubPixelAlgorithm, sig1, sig2)
     r = poc(sig1, sig2)
-    subpixel(algo, r)
+    maxr, Imax = findmax(r)
+    δ = subpixel(algo, r, Imax, maxr)
+    shift = Tuple(Imax - oneunit(Imax))
+    hs = size(sig1) ./ 2
+    @. shift - hs + δ, maxr
 end
+
+displacement(apod::AbstractApodizationFunction, sig1, sig2) = displacement(apod(sig1), apod(sig2))
+
+displacement(algo::AbstractSubPixelAlgorithm, apod::AbstractApodizationFunction, sig1, sig2) = 
+    displacement(algo, apod(sig1), apod(sig2))
+
+
 
 #=function displacement(sig1, sig2)
     r = poc(sig1, sig2)
@@ -40,7 +55,7 @@ end
     @. J - hs + Δ, maxr
 end=#
 
-displacement(sig1, sig2, apod) = displacement(apod(sig1), apod(sig2))
+
 
 #=
 function local_displacement(sig1, sig2, I, winsize, apod)
@@ -72,6 +87,5 @@ function _delta(r, I, maxr, dims)
     end
     δ
 end
-
-end
 =#
+end
