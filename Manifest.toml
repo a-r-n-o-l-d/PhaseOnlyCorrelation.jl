@@ -18,7 +18,7 @@ version = "3.3.3"
 [[deps.ApodizationFunctions]]
 deps = ["DSP"]
 git-tree-sha1 = "049dbcaa89e20f2b648ada86b8fe23975c1d0cbf"
-repo-rev = "main"
+repo-rev = "v0.1.2"
 repo-url = "https://github.com/a-r-n-o-l-d/ApodizationFunctions.jl"
 uuid = "1989e0ef-b035-4793-b6cd-86d79d787dd6"
 version = "0.1.1"

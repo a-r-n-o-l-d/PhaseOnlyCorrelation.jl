@@ -4,7 +4,6 @@ using Images
 using Interpolations
 using CoordinateTransformations
 using TestImages
-
 using Test
 
 @testset "PhaseOnlyCorrelation" begin
