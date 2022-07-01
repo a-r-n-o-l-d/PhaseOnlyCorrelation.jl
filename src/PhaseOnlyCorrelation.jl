@@ -1,8 +1,10 @@
 module PhaseOnlyCorrelation
 
-using FFTW
+using Reexport
+@reexport using ApodizationFunctions
 using ApodizationFunctions: AbstractApodizationFunction
-using Images
+using FFTW
+using ImageCore
 
 export poc, displacement, None, Foroosh #, local_displacement
 
