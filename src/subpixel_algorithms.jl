@@ -7,12 +7,6 @@ subpixel(::None, r, Imax, maxr) = ntuple(zero(r), ndims(r))
 struct Foroosh <: AbstractSubPixelAlgorithm end
 
 subpixel(::Foroosh, r, Imax, maxr) = ntuple(i -> _delta_foroosh(r, Imax, maxr, i), ndims(r))
-    #I, maxr = subpixel(::None, r)
-    
-    #J = Tuple(I - one(I))
-    #hs = size(sig1) ./ 2
-    #@. J - hs + Δ, maxr
-#end
 
 function _delta_foroosh(r1, r2, maxr)
     if r1 > r2
