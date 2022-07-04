@@ -1,5 +1,14 @@
 module PhaseOnlyCorrelation
 
+#=
+Note :
+Package ApodizationFunctions is reexported to avoid "ERROR: can not merge projects",
+this error is due to the add of ApodizationFunctions to ./test/Project.toml.
+Test-specific dependencies should be avoided ?
+https://github.com/JuliaLang/Pkg.jl/issues/1585
+https://github.com/JuliaLang/Pkg.jl/issues/1714
+=#
+
 using Reexport
 @reexport using ApodizationFunctions
 using ApodizationFunctions: AbstractApodizationFunction
@@ -13,6 +22,7 @@ include("subpixel_algorithms.jl")
 """
     poc(sig1, sig2)
 
+Return
 """
 function poc(sig1, sig2)
     c = fft(sig1) .* conj.(fft(sig2))

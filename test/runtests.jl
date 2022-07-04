@@ -1,4 +1,5 @@
 using PhaseOnlyCorrelation
+#using ApodizationFunctions
 using Images
 using Interpolations
 using CoordinateTransformations
