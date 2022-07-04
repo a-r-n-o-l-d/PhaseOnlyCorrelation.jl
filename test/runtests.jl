@@ -21,7 +21,7 @@ using Test
     @test all(Δest .== Δtrue)
 
     # Test subpixel Foroosh method
-    Δtrue = (5.2, 8.3)
+    Δtrue = (5.3, -8.3)
     img2 = warp(img1, Translation(Δtrue...), indices_spatial(img1); method = Linear(), fillvalue = 0)
     Δest, _ = displacement(Foroosh(), img1, img2)
     @test all(isapprox.(Δest, Δtrue; atol = 0.2))
