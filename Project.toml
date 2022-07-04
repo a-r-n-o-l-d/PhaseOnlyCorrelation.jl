@@ -1,7 +1,7 @@
 name = "PhaseOnlyCorrelation"
 uuid = "8638332e-ad6f-4597-b989-96b03b35c499"
 authors = ["Arnold"]
-version = "0.1.0"
+version = "0.1.1"
 
 [deps]
 ApodizationFunctions = "1989e0ef-b035-4793-b6cd-86d79d787dd6"
