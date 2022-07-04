@@ -2,21 +2,25 @@ module PhaseOnlyCorrelation
 
 #=
 Note :
-Package ApodizationFunctions is reexported to avoid "ERROR: can not merge projects",
+Package ApodizationFunctions is reexporting to avoid "ERROR: can not merge projects",
 this error is due to the add of ApodizationFunctions to ./test/Project.toml.
 Test-specific dependencies should be avoided ?
 https://github.com/JuliaLang/Pkg.jl/issues/1585
 https://github.com/JuliaLang/Pkg.jl/issues/1714
 =#
 
-using Reexport
-@reexport using ApodizationFunctions
+#using Reexport
+#@reexport using ApodizationFunctions
 using ApodizationFunctions: AbstractApodizationFunction
 using FFTW
-using ImageCore
+using Images
+using Interpolations
+using CoordinateTransformations
+using TestImages
 
-export poc, displacement, None, Foroosh #, local_displacement
+export testpair, poc, displacement, None, Foroosh
 
+include("utils.jl")
 include("subpixel_algorithms.jl")
 
 """
@@ -53,12 +57,4 @@ displacement(apod::AbstractApodizationFunction, sig1, sig2) = displacement(apod(
 displacement(algo::AbstractSubPixelAlgorithm, apod::AbstractApodizationFunction, sig1, sig2) = 
     displacement(algo, apod(sig1), apod(sig2))
 
-#=
-function local_displacement(sig1, sig2, I, winsize, apod)
-    Δ = CartesianIndex(winsize .÷ 2)
-    s1 = apod(sig1[I - Δ:I + Δ - one(I)])
-    s2 = apod(sig2[I - Δ:I + Δ - one(I)])
-    displacement(s1, s2)
-end
-=#
 end
