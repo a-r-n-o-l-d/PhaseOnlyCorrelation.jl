@@ -11,9 +11,9 @@ subpixel(::Foroosh, r, Imax, maxr) = ntuple(i -> _delta_foroosh(r, Imax, maxr, i
 function _delta_foroosh(r1, r2, maxr)
     if r1 > r2
         δ = - r1 / (r1 + maxr)
-    elseif r2 > r1
+    elseif r2 > r1 
         δ = r2 / (r2 + maxr)
-    else
+    else 
         δ = 0.0
     end
     δ
