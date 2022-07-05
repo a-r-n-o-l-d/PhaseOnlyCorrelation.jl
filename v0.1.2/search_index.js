@@ -1,0 +1,3 @@
+var documenterSearchIndex = {"docs":
+[{"location":"","page":"Home","title":"Home","text":"CurrentModule = PhaseOnlyCorrelation","category":"page"},{"location":"#PhaseOnlyCorrelation","page":"Home","title":"PhaseOnlyCorrelation","text":"","category":"section"},{"location":"","page":"Home","title":"Home","text":"Documentation for PhaseOnlyCorrelation.","category":"page"},{"location":"","page":"Home","title":"Home","text":"","category":"page"},{"location":"","page":"Home","title":"Home","text":"Modules = [PhaseOnlyCorrelation]","category":"page"},{"location":"#PhaseOnlyCorrelation.poc-Tuple{Any, Any}","page":"Home","title":"PhaseOnlyCorrelation.poc","text":"poc(sig1, sig2)\n\nReturn\n\n\n\n\n\n","category":"method"}]
+}
