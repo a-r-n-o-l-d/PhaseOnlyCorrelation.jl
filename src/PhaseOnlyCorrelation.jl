@@ -29,32 +29,34 @@ include("subpixel_algorithms.jl")
 Return
 """
 function poc(sig1, sig2)
-    c = fft(sig1) .* conj.(fft(sig2))
+    c = fft(sig2) .* conj.(fft(sig1))
     real.(ifftshift(ifft(c ./ abs.(c))))
 end
 
 poc(sig1::Array{T}, sig2::Array{T}) where {T<:AbstractGray} = poc(channelview(sig1), channelview(sig2))
 
-function displacement(sig1, sig2)
+#=function displacement(sig1, sig2, subpix::None)
     r = poc(sig1, sig2)
     maxr, Imax = findmax(r)
     shift = Tuple(Imax - oneunit(Imax))
     hs = size(sig1) ./ 2
     @. shift - hs, maxr
-end
+end=#
 
-function displacement(algo::AbstractSubPixelAlgorithm, sig1, sig2)
+#displacement(sig1, sig2, subpix::None) = 
+
+function displacement(sig1, sig2, subpix::AbstractSubPixelAlgorithm = None())
     r = poc(sig1, sig2)
     maxr, Imax = findmax(r)
-    δ = subpixel(algo, r, Imax, maxr)
+    δ = subpixel(subpix, r, Imax, maxr)
     shift = Tuple(Imax - oneunit(Imax))
     hs = size(sig1) ./ 2
     @. shift - hs + δ, maxr
 end
 
-displacement(apod::AbstractApodizationFunction, sig1, sig2) = displacement(apod(sig1), apod(sig2))
+#displacement(apod::AbstractApodizationFunction, sig1, sig2) = displacement(apod(sig1), apod(sig2))
 
-displacement(algo::AbstractSubPixelAlgorithm, apod::AbstractApodizationFunction, sig1, sig2) = 
-    displacement(algo, apod(sig1), apod(sig2))
+displacement(sig1, sig2, apod::AbstractApodizationFunction, subpix::AbstractSubPixelAlgorithm = None()) = 
+    displacement(apod(sig1), apod(sig2), subpix)
 
 end

@@ -2,7 +2,7 @@ abstract type AbstractSubPixelAlgorithm end
 
 struct None <: AbstractSubPixelAlgorithm end
 
-subpixel(::None, r, Imax, maxr) = ntuple(zero(r), ndims(r))
+subpixel(::None, r, Imax, maxr) = ntuple(_ -> zero(eltype(r)), ndims(r))
 
 struct Foroosh <: AbstractSubPixelAlgorithm end
 
